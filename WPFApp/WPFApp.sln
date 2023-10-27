@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFApp", "WPFApp\WPFApp.csproj", "{BCDB1658-464B-462E-B1DF-D73AF06551E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFApp", "src/WPFApp.csproj", "{BCDB1658-464B-462E-B1DF-D73AF06551E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
