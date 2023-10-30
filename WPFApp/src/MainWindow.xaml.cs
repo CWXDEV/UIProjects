@@ -25,12 +25,27 @@ namespace WPFApp
             InitializeComponent();
         }
 
-        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void Title_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                this.DragMove();
+                DragMove();
             }
+        }
+
+        private void Mini_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                ResizeMode = ResizeMode.CanMinimize;
+                var test = SystemCommands.MinimizeWindowCommand;
+
+            }
+        }
+        
+        private void Exit_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

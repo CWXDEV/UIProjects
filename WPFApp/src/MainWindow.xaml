@@ -9,7 +9,6 @@
         Height="600" Width="920"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        MouseDown="MainWindow_OnMouseDown"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
@@ -19,9 +18,9 @@
     </Window.DataContext>
 
     <Border Background="#272537" CornerRadius="20">
-        <Grid>
+        <Grid ShowGridLines="True">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -30,8 +29,12 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Elysian" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White"
-                       FontSize="22" Margin="20,0,0,0"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <TextBlock Text="Elysian" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White"
+                           FontSize="22" Padding="25, 10, 0, 0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Width="800" Height="50"  MouseDown="Title_OnMouseDown"/>
+                <!-- <TextBlock Text="_" FontSize="22" Foreground="White" Margin="65, 0, 20, 0" FontWeight="UltraBold" MouseDown="Mini_OnMouseDown"/> -->
+                <!-- <TextBlock Text="X" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 20, 0" Foreground="White" MouseDown="Exit_OnMouseDown"/> -->
+            </StackPanel>
             
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="0.1">
                 <StackPanel Grid.Row="1" >

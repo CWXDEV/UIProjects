@@ -19,6 +19,7 @@
             <DataTemplate DataType="{x:Type viewModel:DiscoveryViewModel}">
                 <view:DiscoveryView />
             </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
