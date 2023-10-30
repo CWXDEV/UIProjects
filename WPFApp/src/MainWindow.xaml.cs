@@ -24,15 +24,5 @@ namespace WPFApp
         {
             InitializeComponent();
         }
-
-        public void BtnClickP1(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new Page1();
-        }
-        
-        public void BtnClickP2(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new Page2();
-        }
     }
 }
