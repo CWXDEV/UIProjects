@@ -7,11 +7,12 @@
         xmlns:viewModel="clr-namespace:WPFApp.MVVM.ViewModel"
         mc:Ignorable="d"
         Height="600" Width="920"
-        WindowStyle="None"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="MainWindow_OnMouseDown"
+        WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        AllowsTransparency="True">
     
     <Window.DataContext>
         <viewModel:MainViewModel />
@@ -20,32 +21,31 @@
     <Border Background="#272537" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="75" />
+                <RowDefinition Height="50" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-
             <TextBlock Text="Elysian" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White"
-                       FontSize="22" Margin="20,0,0,0" FontFamily="/Fonts/#Poppins"/>
-
-            <StackPanel Grid.Row="1">
-                <RadioButton Content="Home" Height="50" Foreground="white" FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}" IsChecked="True"
-                             Command="{Binding HomeViewCommand}"/>
-                <RadioButton Content="Discovery" Height="50" Foreground="white" FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}" 
-                             Command="{Binding DiscoveryViewCommand}"/>
-                <RadioButton Content="Featured" Height="50" Foreground="white" FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}" />
-            </StackPanel>
-
-            <TextBox Width="250" Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"
-                     Grid.Column="1" Style="{StaticResource ModernTextBox}" />
+                       FontSize="22" Margin="20,0,0,0"/>
+            
+            <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="0.1">
+                <StackPanel Grid.Row="1" >
+                    <RadioButton Content="Home" Height="50" Foreground="white" FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}" IsChecked="True"
+                                 Command="{Binding HomeViewCommand}"/>
+                    <RadioButton Content="Discovery" Height="50" Foreground="white" FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}" 
+                                 Command="{Binding DiscoveryViewCommand}"/>
+                    <RadioButton Content="Featured" Height="50" Foreground="white" FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}" />
+                </StackPanel>
+            </Border>
+            
 
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10" Content="{Binding CurrentView}"/>
         </Grid>
