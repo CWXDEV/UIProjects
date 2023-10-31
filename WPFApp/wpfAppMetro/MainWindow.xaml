@@ -6,30 +6,24 @@
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  xmlns:local="clr-namespace:wpfAppMetro"
+                 xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
                  mc:Ignorable="d"
-                 Height="700" 
+                 Height="700"
                  Width="1100"
                  WindowStartupLocation="CenterScreen"
                  ResizeMode="CanMinimize">
+    
     <!-- https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation 
          https://mahapps.com/docs/controls/HamburgerMenu
          https://github.com/MahApps/MahApps.Metro -->
     
-    <mah:MetroWindow.IconTemplate>
-        <DataTemplate>
-            <iconPacks:PackIconUnicons Kind="BatteryBolt" 
-                                       Width="30" 
-                                       Height="30"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Margin="4"
-                                       Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
-        </DataTemplate>
-    </mah:MetroWindow.IconTemplate>
-    
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
+
     <mah:MetroWindow.LeftWindowCommands>
         <mah:WindowCommands>
-            <Button Click="LaunchGitHubSite" ToolTip="Open up the GitHub site">
+            <Button Click="LaunchGitHubSite" ToolTip="Open Repo for this app">
                 <iconPacks:PackIconModern Width="22"
                                           Height="22"
                                           Kind="SocialGithubOctocat" />
@@ -37,27 +31,9 @@
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
     
-    <mah:MetroWindow.RightWindowCommands>
-        <mah:WindowCommands>
-            <Button Click="DeployCupCakes" Content="Deploy CupCakes">
-                <Button.ContentTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconModern Width="22"
-                                                      Height="22"
-                                                      VerticalAlignment="Center"
-                                                      Kind="FoodCupcake" />
-                            <TextBlock Margin="4 0 0 0"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </Button.ContentTemplate>
-            </Button>
-        </mah:WindowCommands>
-    </mah:MetroWindow.RightWindowCommands>
-    
-    <Grid>
+    <!-- <RadioButton Content="Home" Height="50" Foreground="white" FontSize="14" 
+              Style="{StaticResource MenuButtonTheme}" IsChecked="True"
+              Command="{Binding HomeViewCommand}"/>
 
-    </Grid>
+    <ContentControl Margin="10" Content="{Binding CurrentView}"/> -->
 </mah:MetroWindow>

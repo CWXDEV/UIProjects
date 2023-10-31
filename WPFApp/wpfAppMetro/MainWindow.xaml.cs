@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,13 +29,11 @@ namespace wpfAppMetro
 
         private void LaunchGitHubSite(object sender, RoutedEventArgs e)
         {
-            // Launch the GitHub site...
-        }
-
-        
-        private void DeployCupCakes(object sender, RoutedEventArgs e)
-        {
-            // deploy some CupCakes...
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/CWXDEV/UIProjects/tree/main/WPFApp/wpfAppMetro",
+                UseShellExecute = true
+            });
         }
     }
 }
