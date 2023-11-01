@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFApp", "src/WPFApp.csproj", "{BCDB1658-464B-462E-B1DF-D73AF06551E1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpfAppMetro", "wpfAppMetro\wpfAppMetro.csproj", "{9DC16317-7F51-4B8F-AE2A-3F7EE3A38468}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIO", "AIO\AIO.csproj", "{9DC16317-7F51-4B8F-AE2A-3F7EE3A38468}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +8,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BCDB1658-464B-462E-B1DF-D73AF06551E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCDB1658-464B-462E-B1DF-D73AF06551E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCDB1658-464B-462E-B1DF-D73AF06551E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCDB1658-464B-462E-B1DF-D73AF06551E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9DC16317-7F51-4B8F-AE2A-3F7EE3A38468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9DC16317-7F51-4B8F-AE2A-3F7EE3A38468}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DC16317-7F51-4B8F-AE2A-3F7EE3A38468}.Release|Any CPU.ActiveCfg = Release|Any CPU
