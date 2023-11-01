@@ -6,17 +6,18 @@
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  xmlns:local="clr-namespace:wpfAppMetro"
+                 xmlns:core="clr-namespace:wpfAppMetro.Core"
                  xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
                  mc:Ignorable="d"
                  Height="700"
                  Width="1100"
                  WindowStartupLocation="CenterScreen"
                  ResizeMode="CanMinimize">
-    
+
     <!-- https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation 
          https://mahapps.com/docs/controls/HamburgerMenu
          https://github.com/MahApps/MahApps.Metro -->
-    
+
     <Window.DataContext>
         <viewModels:MainViewModel />
     </Window.DataContext>
@@ -24,16 +25,35 @@
     <mah:MetroWindow.LeftWindowCommands>
         <mah:WindowCommands>
             <Button Click="LaunchGitHubSite" ToolTip="Open Repo for this app">
-                <iconPacks:PackIconModern Width="22"
-                                          Height="22"
+                <iconPacks:PackIconModern Width="28"
+                                          Height="28"
                                           Kind="SocialGithubOctocat" />
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
-    
-    <!-- <RadioButton Content="Home" Height="50" Foreground="white" FontSize="14" 
-              Style="{StaticResource MenuButtonTheme}" IsChecked="True"
-              Command="{Binding HomeViewCommand}"/>
 
-    <ContentControl Margin="10" Content="{Binding CurrentView}"/> -->
+
+    <Grid>
+        <StackPanel x:Name="SideMenu" Width="45" HorizontalAlignment="Left" Background="#292929" ZIndex="2"
+                    MouseEnter="SideMenu_OnMouseEnter" MouseLeave="SideMenu_OnMouseLeave">
+
+            <core:IconRadioButton Content="Home" Icon="Cog" IsChecked="True" Command="{Binding HomeViewCommand}" />
+            <core:IconRadioButton Content="Page2" Icon="Bug" Command="{Binding Page2ViewCommand}" />
+
+            <StackPanel.Resources>
+                <Storyboard x:Key="OpenSideMenu">
+                    <DoubleAnimation Storyboard.TargetName="SideMenu" Storyboard.TargetProperty="Width" By="5" To="200"
+                                     Duration="0:0:0.2" DecelerationRatio="0.5" />
+                </Storyboard>
+
+                <Storyboard x:Key="CloseSideMenu">
+                    <DoubleAnimation Storyboard.TargetName="SideMenu" Storyboard.TargetProperty="Width" By="5" To="45"
+                                     Duration="0:0:0.2" DecelerationRatio="0.5" />
+                </Storyboard>
+            </StackPanel.Resources>
+        </StackPanel>
+
+        <ContentControl Content="{Binding CurrentView}" />
+    </Grid>
+
 </mah:MetroWindow>

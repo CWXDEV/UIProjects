@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -34,6 +35,16 @@ namespace wpfAppMetro
                 FileName = "https://github.com/CWXDEV/UIProjects/tree/main/WPFApp/wpfAppMetro",
                 UseShellExecute = true
             });
+        }
+
+        private void SideMenu_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            (SideMenu.Resources["OpenSideMenu"] as Storyboard).Begin();
+        }
+        
+        private void SideMenu_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            (SideMenu.Resources["CloseSideMenu"] as Storyboard).Begin();
         }
     }
 }

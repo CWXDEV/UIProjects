@@ -12,46 +12,62 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
-    
-    <Window.DataContext>
-        <viewModel:MainViewModel />
-    </Window.DataContext>
+
+    <!-- <Window.DataContext> -->
+    <!--     <viewModel:MainViewModel /> -->
+    <!-- </Window.DataContext> -->
 
     <Border Background="#272537" CornerRadius="20">
-        <Grid ShowGridLines="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <!-- <Grid ShowGridLines="True"> -->
+        <!-- <Grid.ColumnDefinitions> -->
+        <!--     <ColumnDefinition Width="150" /> -->
+        <!--     <ColumnDefinition /> -->
+        <!-- </Grid.ColumnDefinitions> -->
+        <!-- -->
+        <!-- <Grid.RowDefinitions> -->
+        <!--     <RowDefinition Height="50" /> -->
+        <!--     <RowDefinition /> -->
+        <!-- </Grid.RowDefinitions> -->
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <!-- <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"> -->
+        <!--     <TextBlock Text="Elysian" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" -->
+        <!--                FontSize="22" Padding="25, 10, 0, 0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" -->
+        <!--                Width="800" Height="50" MouseDown="Title_OnMouseDown" /> -->
+        <!--     ~1~ <TextBlock Text="_" FontSize="22" Foreground="White" Margin="65, 0, 20, 0" FontWeight="UltraBold" MouseDown="Mini_OnMouseDown"/> @1@ -->
+        <!--     ~1~ <TextBlock Text="X" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 20, 0" Foreground="White" MouseDown="Exit_OnMouseDown"/> @1@ -->
+        <!-- </StackPanel> -->
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                <TextBlock Text="Elysian" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White"
-                           FontSize="22" Padding="25, 10, 0, 0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Width="800" Height="50"  MouseDown="Title_OnMouseDown"/>
-                <!-- <TextBlock Text="_" FontSize="22" Foreground="White" Margin="65, 0, 20, 0" FontWeight="UltraBold" MouseDown="Mini_OnMouseDown"/> -->
-                <!-- <TextBlock Text="X" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 20, 0" Foreground="White" MouseDown="Exit_OnMouseDown"/> -->
-            </StackPanel>
+        <StackPanel x:Name="Menu" Grid.Row="1" Width="50" HorizontalAlignment="Left" MouseEnter="Menu_OnMouseEnter"
+                    MouseLeave="Menu_OnMouseLeave" Background="DarkBlue">
             
-            <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="0.1">
-                <StackPanel Grid.Row="1" >
-                    <RadioButton Content="Home" Height="50" Foreground="white" FontSize="14"
-                                 Style="{StaticResource MenuButtonTheme}" IsChecked="True"
-                                 Command="{Binding HomeViewCommand}"/>
-                    <RadioButton Content="Discovery" Height="50" Foreground="white" FontSize="14"
-                                 Style="{StaticResource MenuButtonTheme}" 
-                                 Command="{Binding DiscoveryViewCommand}"/>
-                    <RadioButton Content="Featured" Height="50" Foreground="white" FontSize="14"
-                                 Style="{StaticResource MenuButtonTheme}" />
-                </StackPanel>
-            </Border>
+            <RadioButton Content="Home" Height="50" Foreground="white" FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}" IsChecked="True"
+                         Command="{Binding HomeViewCommand}" />
             
+            <RadioButton Content="Discovery" Height="50" Foreground="white" FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding DiscoveryViewCommand}" />
+            
+            <RadioButton Content="Featured" Height="50" Foreground="white" FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}" />
 
-            <ContentControl Grid.Row="1" Grid.Column="1" Margin="10" Content="{Binding CurrentView}"/>
-        </Grid>
+            <StackPanel.Resources>
+                <Storyboard x:Key="OpenMenu">
+                    <DoubleAnimation Storyboard.TargetName="Menu" Storyboard.TargetProperty="Width" By="5" To="200"
+                                     Duration="0:0:0.2" DecelerationRatio="0.5" />
+                </Storyboard>
+
+                <Storyboard x:Key="CloseMenu">
+                    <DoubleAnimation Storyboard.TargetName="Menu" Storyboard.TargetProperty="Width" By="5" To="50"
+                                     Duration="0:0:0.2" DecelerationRatio="0.5" />
+                </Storyboard>
+            </StackPanel.Resources>
+
+        </StackPanel>
+
+
+        <!-- <ContentControl Grid.Row="1" Grid.Column="1" Margin="10" Content="{Binding CurrentView}" /> -->
+        <!-- </Grid> -->
 
 
     </Border>
