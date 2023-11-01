@@ -19,8 +19,12 @@
                 <view:HomeView />
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type viewModel:Page2ViewModel}">
-                <view:Page2View />
+            <DataTemplate DataType="{x:Type viewModel:HardwareMonitorViewModel}">
+                <view:HardwareMonitorView />
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView />
             </DataTemplate>
             
         </ResourceDictionary>

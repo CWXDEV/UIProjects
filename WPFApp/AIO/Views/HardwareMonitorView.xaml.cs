@@ -2,9 +2,9 @@
 
 namespace wpfAppMetro.Views;
 
-public partial class Page2View : UserControl
+public partial class HardwareMonitorView : UserControl
 {
-    public Page2View()
+    public HardwareMonitorView()
     {
         InitializeComponent();
     }

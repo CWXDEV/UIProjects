@@ -6,10 +6,12 @@ public class MainViewModel : ObservableObject
 {
     // new "page" add new RelayCommand, NewPageVM
     public RelayCommand HomeViewCommand { get; set; }
-    public RelayCommand Page2ViewCommand { get; set; }
+    public RelayCommand HardwareMonitorViewCommand { get; set; }
+    public RelayCommand SettingsViewCommand { get; set; }
 
     public HomeViewModel HomeVm { get; set; }
-    public Page2ViewModel Page2Vm { get; set; }
+    public HardwareMonitorViewModel HardwareMonitorVm { get; set; }
+    public SettingsViewModel SettingsVm { get; set; }
 
     private object _currentView;
 
@@ -26,12 +28,16 @@ public class MainViewModel : ObservableObject
     // new "page" instantiate Model, Instantiate Relay
     public MainViewModel()
     {
+        // ViewModels
         HomeVm = new HomeViewModel();
-        Page2Vm = new Page2ViewModel();
+        HardwareMonitorVm = new HardwareMonitorViewModel();
+        SettingsVm = new SettingsViewModel();
 
-        CurrentView = HomeVm;
-
+        // RelayCommands
         HomeViewCommand = new RelayCommand(o => { CurrentView = HomeVm; });
-        Page2ViewCommand = new RelayCommand(o => { CurrentView = Page2Vm; });
+        HardwareMonitorViewCommand = new RelayCommand(o => { CurrentView = HardwareMonitorVm; });
+        SettingsViewCommand = new RelayCommand(o => { CurrentView = SettingsVm; });
+        
+        CurrentView = HomeVm;
     }
 }

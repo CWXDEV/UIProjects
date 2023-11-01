@@ -23,21 +23,27 @@
     <mah:MetroWindow.LeftWindowCommands>
         <mah:WindowCommands>
             <Button Click="LaunchGitHubSite" ToolTip="Open Repo for this app">
-                <iconPacks:PackIconModern Width="28"
-                                          Height="28"
-                                          Kind="SocialGithubOctocat" />
+                <iconPacks:PackIconModern Width="28" Height="28" Kind="SocialGithubOctocat" />
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
 
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button ToolTip="Settings" Command="{Binding SettingsViewCommand}">
+                <iconPacks:PackIconModern Width="18" Height="18" Kind="Cog" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
 
     <Grid>
         <StackPanel x:Name="SideMenu" Width="45" HorizontalAlignment="Left" Background="#292929" ZIndex="2"
                     MouseEnter="SideMenu_OnMouseEnter" MouseLeave="SideMenu_OnMouseLeave">
 
             <!-- Add new icon Radio Button to get a new menu item -->
-            <core:IconRadioButton Content="Home" Icon="Cog" IsChecked="True" Command="{Binding HomeViewCommand}" />
-            <core:IconRadioButton Content="Page2" Icon="Bug" Command="{Binding Page2ViewCommand}" />
+            <core:IconRadioButton Content="Home" Icon="Home" IsChecked="True" Command="{Binding HomeViewCommand}" />
+            <core:IconRadioButton Content="Hardware Monitor" Icon="Thermometer"
+                                  Command="{Binding HardwareMonitorViewCommand}" />
 
             <StackPanel.Resources>
                 <Storyboard x:Key="OpenSideMenu">
