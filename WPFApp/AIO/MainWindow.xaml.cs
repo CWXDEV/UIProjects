@@ -32,7 +32,7 @@ namespace wpfAppMetro
         {
             Process.Start(new ProcessStartInfo
             {
-                FileName = "https://github.com/CWXDEV/UIProjects/tree/main/WPFApp/AIO",
+                FileName = "https://github.com/CWXDEV/UIProjects/tree/main/WPFApp",
                 UseShellExecute = true
             });
         }

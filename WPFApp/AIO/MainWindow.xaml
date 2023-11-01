@@ -14,9 +14,7 @@
                  WindowStartupLocation="CenterScreen"
                  ResizeMode="CanMinimize">
 
-    <!-- https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation 
-         https://mahapps.com/docs/controls/HamburgerMenu
-         https://github.com/MahApps/MahApps.Metro -->
+    <!-- https://github.com/MahApps/MahApps.Metro -->
 
     <Window.DataContext>
         <viewModels:MainViewModel />
@@ -37,6 +35,7 @@
         <StackPanel x:Name="SideMenu" Width="45" HorizontalAlignment="Left" Background="#292929" ZIndex="2"
                     MouseEnter="SideMenu_OnMouseEnter" MouseLeave="SideMenu_OnMouseLeave">
 
+            <!-- Add new icon Radio Button to get a new menu item -->
             <core:IconRadioButton Content="Home" Icon="Cog" IsChecked="True" Command="{Binding HomeViewCommand}" />
             <core:IconRadioButton Content="Page2" Icon="Bug" Command="{Binding Page2ViewCommand}" />
 
