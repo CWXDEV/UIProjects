@@ -16,7 +16,7 @@ public partial class SettingsView : UserControl
     
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-        var localManager = new LocalStorageManager();
+        var localManager = LocalStorageManager.Instance;
         LocalSaveState = localManager.OpenJson();
         
         Console.WriteLine(LocalSaveState.HardwareMonitorSave.Timer);

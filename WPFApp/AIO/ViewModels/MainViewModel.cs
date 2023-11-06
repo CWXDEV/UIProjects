@@ -1,4 +1,6 @@
-﻿using wpfAppMetro.Core;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
+using wpfAppMetro.Core;
 
 namespace wpfAppMetro.ViewModels;
 
@@ -8,7 +10,7 @@ public class MainViewModel : ObservableObject
     public RelayCommand HomeViewCommand { get; set; }
     public RelayCommand HardwareMonitorViewCommand { get; set; }
     public RelayCommand SettingsViewCommand { get; set; }
-
+    
     public HomeViewModel HomeVm { get; set; }
     public HardwareMonitorViewModel HardwareMonitorVm { get; set; }
     public SettingsViewModel SettingsVm { get; set; }

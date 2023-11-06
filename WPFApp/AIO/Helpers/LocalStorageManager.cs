@@ -7,8 +7,26 @@ namespace wpfAppMetro.Helpers;
 
 public class LocalStorageManager
 {
+    private static LocalStorageManager _instance = null;
+    private static readonly object Padlock = new object();
+    
     private string _path = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CWX-AIO");
     private string _fileName = "SaveState.json";
+    public static LocalStorageManager Instance
+    {
+        get
+        {
+            lock (Padlock)
+            {
+                if (_instance == null)
+                {
+                    _instance = new LocalStorageManager();
+                }
+
+                return _instance;
+            }
+        }
+    }
     
     public LocalStorageManager()
     {
@@ -26,6 +44,7 @@ public class LocalStorageManager
             File.WriteAllText(Path.Combine(_path, _fileName), jsonString);
         }
     }
+
 
     public void SaveJson(SaveStateModel saveState)
     {

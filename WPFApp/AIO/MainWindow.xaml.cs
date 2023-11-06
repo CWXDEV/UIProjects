@@ -41,7 +41,7 @@ namespace wpfAppMetro
         {
             (SideMenu.Resources["OpenSideMenu"] as Storyboard).Begin();
         }
-        
+
         private void SideMenu_OnMouseLeave(object sender, MouseEventArgs e)
         {
             (SideMenu.Resources["CloseSideMenu"] as Storyboard).Begin();

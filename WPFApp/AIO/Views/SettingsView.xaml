@@ -16,5 +16,6 @@
             <Button Content="log content" Click="ButtonBase_OnClick" Height="10" Width="150"/>
         </StackPanel>
         
+        
     </Grid>
 </UserControl>
