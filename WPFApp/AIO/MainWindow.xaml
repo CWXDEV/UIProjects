@@ -57,7 +57,7 @@
             </StackPanel.Resources>
         </StackPanel>
 
-        <ContentControl Content="{Binding CurrentView}" />
+        <ContentControl Margin="65, 20, 20, 20" Content="{Binding CurrentView}" />
     </Grid>
 
 </mah:MetroWindow>

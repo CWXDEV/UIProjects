@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using wpfAppMetro.Helpers;
-using wpfAppMetro.Models.IO;
+using wpfAppMetro.Models.SaveState;
 
 namespace wpfAppMetro.Views;
 
 public partial class SettingsView : UserControl
 {
-    public SaveStateModel LocalSaveState;
+    public SaveStateModel? LocalSaveState;
+    
     public SettingsView()
     {
         InitializeComponent();
@@ -19,6 +21,6 @@ public partial class SettingsView : UserControl
         var localManager = LocalStorageManager.Instance;
         LocalSaveState = localManager.OpenJson();
         
-        Console.WriteLine(LocalSaveState.HardwareMonitorSave.Timer);
+        Console.WriteLine(JsonSerializer.Serialize(LocalSaveState));
     }
 }

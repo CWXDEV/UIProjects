@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Timers;
+using System.Windows;
 using LibreHardwareMonitor.Hardware;
 using wpfAppMetro.Core;
 using wpfAppMetro.Helpers;
@@ -10,38 +9,40 @@ using wpfAppMetro.Models.Enum;
 
 namespace wpfAppMetro.ViewModels;
 
+// TODO: Finish decision on design and how to store the data
 public class HardwareMonitorViewModel : ObservableObject
 {
-    private HardwareMonitorHelper _helper = null;
-    public ObservableCollection<string> LoadSensors { get; set; } = new ObservableCollection<string>();
-    
-    // public ISensor? CPUload { get; set; }
+    private HardwareMonitorHelper _helper;
+    public ObservableCollection<ISensor> LoadSensors { get; set; } = new ObservableCollection<ISensor>();
+
     public HardwareMonitorViewModel()
     {
         _helper = HardwareMonitorHelper.Instance;
-        // CPUload = _helper.GetCpu().Sensors.FirstOrDefault(x => x.SensorType is SensorType.Load);
-        
+
         AppStateManager.Instance.UpdateTimerDict
             .FirstOrDefault(x => x.Key == ETimer.Hardware.ToString()).Value.Elapsed += OnUpdate;
         
         PopulateCpuContainer();
     }
-    
+
     public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
     {
         PopulateCpuContainer();
-        // OnPropertyChanged("LoadSensors");
     }
 
     public void PopulateCpuContainer()
     {
-        var list = _helper.GetCpu().Sensors.Where(x => x.SensorType is SensorType.Load).ToList();
+        var list = _helper.GetCpu()?.Sensors.Where(x => x.SensorType is SensorType.Load).OrderBy(x => x.Index).ToList();
+        var cpu = _helper.GetCpu();
 
-        LoadSensors.Clear();
-        
-        for (var i = 0; i < list.Count; i++)
+        Application.Current.Dispatcher.Invoke(() =>
         {
-            LoadSensors.Add($"Cpu{i} Load: {list[i].Value}");
-        }
+            LoadSensors.Clear();
+
+            for (var i = 0; i < list?.Count; i++)
+            {
+                LoadSensors.Add(list[i]);
+            }
+        });
     }
 }

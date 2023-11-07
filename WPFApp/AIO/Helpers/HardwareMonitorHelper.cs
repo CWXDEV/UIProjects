@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Timers;
 using LibreHardwareMonitor.Hardware;
 using wpfAppMetro.Models.Enum;
@@ -9,10 +8,10 @@ namespace wpfAppMetro.Helpers;
 
 public class HardwareMonitorHelper
 {
-    private static HardwareMonitorHelper _instance = null;
+    private static HardwareMonitorHelper? _instance;
     private static readonly object Padlock = new object();
-    private Computer _computer = null;
-    public bool Enabled = false;
+    private Computer _computer;
+    public bool Enabled;
 
     public static HardwareMonitorHelper Instance
     {
@@ -63,48 +62,48 @@ public class HardwareMonitorHelper
 
     public IHardware? GetCpu()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Cpu);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Cpu);
     }
 
     public IHardware? GetGpu()
     {
-        return _computer?.Hardware.FirstOrDefault(x =>
+        return _computer.Hardware.FirstOrDefault(x =>
             x.HardwareType is HardwareType.GpuNvidia or HardwareType.GpuAmd or HardwareType.GpuIntel);
     }
 
     public IHardware? GetMemory()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Memory);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Memory);
     }
 
     public IHardware? GetMotherboard()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Motherboard);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Motherboard);
     }
 
     public IHardware? GetStorage()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Storage);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Storage);
     }
 
     public IHardware? GetControllers()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.EmbeddedController);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.EmbeddedController);
     }
 
     public IHardware? GetNetwork()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Network);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Network);
     }
 
     public IHardware? GetBattery()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Battery);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Battery);
     }
 
     public IHardware? GetPsu()
     {
-        return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Psu);
+        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Psu);
     }
 
     public void UpdateHardware()

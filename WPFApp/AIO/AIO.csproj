@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Models\SPT\" />
       <Folder Include="Resources\Documents\" />
       <Folder Include="Resources\Images\" />
       <Folder Include="Resources\Videos\" />

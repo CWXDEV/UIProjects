@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
-using wpfAppMetro.Models.IO;
+using wpfAppMetro.Models.SaveState;
 
 namespace wpfAppMetro.Helpers;
 
 public class LocalStorageManager
 {
-    private static LocalStorageManager _instance = null;
+    private static LocalStorageManager? _instance;
     private static readonly object Padlock = new object();
     
     private string _path = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CWX-AIO");
@@ -60,13 +60,13 @@ public class LocalStorageManager
         }
     }
 
-    public SaveStateModel OpenJson()
+    public SaveStateModel? OpenJson()
     {
         try
         {
             var jsonString = File.ReadAllText(Path.Combine(_path, _fileName));
-            var data = JsonSerializer.Deserialize<SaveStateModel>(jsonString);
-            return data;
+            return JsonSerializer.Deserialize<SaveStateModel>(jsonString);
+            
         }
         catch (Exception e)
         {
@@ -82,6 +82,19 @@ public class LocalStorageManager
             HardwareMonitorSave = new HardwareMonitorModel()
             {
                 Timer = 5
+            },
+            SptConfigSave = new []
+            {
+                new SptLaunchConfigModel()
+                {
+                    Path = "1",
+                    LaunchServer = false
+                },
+                new SptLaunchConfigModel()
+                {
+                    Path = "2",
+                    LaunchServer = false
+                }
             }
         };
     }

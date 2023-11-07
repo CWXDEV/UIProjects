@@ -3,25 +3,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:wpfAppMetro.Views"
              xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="300" 
+             d:DesignHeight="300"
              d:DesignWidth="600"
              Background="Transparent">
-    
+
     <UserControl.DataContext>
         <viewModels:HardwareMonitorViewModel />
     </UserControl.DataContext>
-    
-    <StackPanel x:Name="CpuContainer">
-        <!-- <TextBlock Text="{Binding CPUload.Value}" Foreground="White" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/> -->
-        <ItemsControl ItemsSource="{Binding LoadSensors}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding }" Foreground="White" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+
+    <StackPanel x:Name="Container">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="CpuContainer"/>
+                <ColumnDefinition x:Name="GpuContainer"/>
+                <ColumnDefinition x:Name="RamContainer"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" Background="Chocolate" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="CPU NAME" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+            
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0" Text="#" Foreground="White" FontSize="14"/>
+                            <TextBlock Grid.Column="1" Text="Load" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="Temp" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="3" Text="Clock" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
+                        </Grid>
+                        
+                        <Grid Grid.Row="1">
+                            <ItemsControl ItemsSource="{Binding LoadSensors}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <TextBlock Grid.Column="0" Text="{Binding Index}" Foreground="White" FontSize="10"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding Value}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
+                                            <TextBlock Grid.Column="2" Text="{Binding SensorType}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
+                                            <TextBlock Grid.Column="3" Text="{Binding Max}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
     </StackPanel>
 </UserControl>
