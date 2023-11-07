@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Timers;
 using LibreHardwareMonitor.Hardware;
+using wpfAppMetro.Models.Enum;
 using wpfAppMetro.Models.HW;
 
 namespace wpfAppMetro.Helpers;
@@ -10,6 +12,7 @@ public class HardwareMonitorHelper
     private static HardwareMonitorHelper _instance = null;
     private static readonly object Padlock = new object();
     private Computer _computer = null;
+    public bool Enabled = false;
 
     public static HardwareMonitorHelper Instance
     {
@@ -44,6 +47,18 @@ public class HardwareMonitorHelper
 
         _computer.Open();
         _computer.Accept(new UpdateVisitor());
+        Enabled = true;
+
+        AppStateManager.Instance.UpdateTimerDict
+            .FirstOrDefault(x => x.Key == ETimer.Hardware.ToString())
+            .Value.Elapsed += OnUpdate;
+    }
+
+    public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
+    {
+        if (_instance == null || !Enabled) return;
+
+        _instance.UpdateHardware();
     }
 
     public IHardware? GetCpu()
@@ -91,7 +106,7 @@ public class HardwareMonitorHelper
     {
         return _computer?.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Psu);
     }
-    
+
     public void UpdateHardware()
     {
         foreach (var hardware in _computer.Hardware)

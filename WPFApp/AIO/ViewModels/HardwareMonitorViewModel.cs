@@ -1,50 +1,47 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Timers;
 using LibreHardwareMonitor.Hardware;
 using wpfAppMetro.Core;
 using wpfAppMetro.Helpers;
+using wpfAppMetro.Models.Enum;
 
 namespace wpfAppMetro.ViewModels;
 
 public class HardwareMonitorViewModel : ObservableObject
 {
-    private HardwareMonitorHelper _hwInstance = null;
-    private Timer _timer = null;
-    public bool Enabled = false;
+    private HardwareMonitorHelper _helper = null;
+    public ObservableCollection<string> LoadSensors { get; set; } = new ObservableCollection<string>();
     
-    public int HwTimer = 1000;
-    public float? CpuLoad { get; set; }
-    public float? GpuLoad { get; set; }
-    
+    // public ISensor? CPUload { get; set; }
     public HardwareMonitorViewModel()
     {
-        _hwInstance = HardwareMonitorHelper.Instance;
-        Enabled = true;
-        Start();
+        _helper = HardwareMonitorHelper.Instance;
+        // CPUload = _helper.GetCpu().Sensors.FirstOrDefault(x => x.SensorType is SensorType.Load);
+        
+        AppStateManager.Instance.UpdateTimerDict
+            .FirstOrDefault(x => x.Key == ETimer.Hardware.ToString()).Value.Elapsed += OnUpdate;
+        
+        PopulateCpuContainer();
     }
-
-    public void Start()
-    {
-        _timer = new Timer();
-        _timer.Interval = HwTimer;
-        _timer.Elapsed += OnUpdate;
-        _timer.Start();
-    }
-
+    
     public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
     {
-        if (_hwInstance == null || !Enabled) return;
-        
-        _hwInstance.UpdateHardware();
-        CpuLoad = _hwInstance.GetCpu().Sensors.FirstOrDefault(x => x.SensorType == SensorType.Load).Value;
-        GpuLoad = _hwInstance.GetGpu().Sensors.FirstOrDefault(x => x.SensorType == SensorType.Load).Value;
-        OnPropertyChanged("CpuLoad");
-        OnPropertyChanged("GpuLoad");
+        PopulateCpuContainer();
+        // OnPropertyChanged("LoadSensors");
     }
 
-    public void End()
+    public void PopulateCpuContainer()
     {
-        _timer.Stop();
-        Enabled = false;
+        var list = _helper.GetCpu().Sensors.Where(x => x.SensorType is SensorType.Load).ToList();
+
+        LoadSensors.Clear();
+        
+        for (var i = 0; i < list.Count; i++)
+        {
+            LoadSensors.Add($"Cpu{i} Load: {list[i].Value}");
+        }
     }
 }
