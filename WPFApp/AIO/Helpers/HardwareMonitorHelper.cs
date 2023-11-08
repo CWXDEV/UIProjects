@@ -8,109 +8,109 @@ namespace wpfAppMetro.Helpers;
 
 public class HardwareMonitorHelper
 {
-    private static HardwareMonitorHelper? _instance;
-    private static readonly object Padlock = new object();
-    private Computer _computer;
-    public bool Enabled;
+	private static HardwareMonitorHelper? _instance;
+	private static readonly object Padlock = new();
+	private readonly Computer _computer;
+	public bool Enabled;
 
-    public static HardwareMonitorHelper Instance
-    {
-        get
-        {
-            lock (Padlock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new HardwareMonitorHelper();
-                }
+	public HardwareMonitorHelper()
+	{
+		_computer = new Computer
+		{
+			IsCpuEnabled = true,
+			IsGpuEnabled = true,
+			IsMemoryEnabled = true,
+			IsMotherboardEnabled = true,
+			IsStorageEnabled = true,
+			IsControllerEnabled = true,
+			IsNetworkEnabled = true,
+			IsBatteryEnabled = true,
+			IsPsuEnabled = true
+		};
 
-                return _instance;
-            }
-        }
-    }
+		_computer.Open();
+		_computer.Accept(new UpdateVisitor());
+		Enabled = true;
 
-    public HardwareMonitorHelper()
-    {
-        _computer = new Computer()
-        {
-            IsCpuEnabled = true,
-            IsGpuEnabled = true,
-            IsMemoryEnabled = true,
-            IsMotherboardEnabled = true,
-            IsStorageEnabled = true,
-            IsControllerEnabled = true,
-            IsNetworkEnabled = true,
-            IsBatteryEnabled = true,
-            IsPsuEnabled = true
-        };
+		AppStateManager.Instance.UpdateTimerDict
+			.FirstOrDefault(x => x.Key == ETimer.Hardware.ToString())
+			.Value.Elapsed += OnUpdate;
+	}
 
-        _computer.Open();
-        _computer.Accept(new UpdateVisitor());
-        Enabled = true;
+	public static HardwareMonitorHelper Instance
+	{
+		get
+		{
+			lock (Padlock)
+			{
+				if (_instance == null)
+				{
+					_instance = new HardwareMonitorHelper();
+				}
 
-        AppStateManager.Instance.UpdateTimerDict
-            .FirstOrDefault(x => x.Key == ETimer.Hardware.ToString())
-            .Value.Elapsed += OnUpdate;
-    }
+				return _instance;
+			}
+		}
+	}
 
-    public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
-    {
-        if (_instance == null || !Enabled) return;
+	public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
+	{
+		if (_instance == null || !Enabled)
+		{
+			return;
+		}
 
-        _instance.UpdateHardware();
-    }
+		_instance.UpdateHardware();
+	}
 
-    public IHardware? GetCpu()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Cpu);
-    }
+	public IHardware? GetCpu()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Cpu);
+	}
 
-    public IHardware? GetGpu()
-    {
-        return _computer.Hardware.FirstOrDefault(x =>
-            x.HardwareType is HardwareType.GpuNvidia or HardwareType.GpuAmd or HardwareType.GpuIntel);
-    }
+	public IHardware? GetGpu()
+	{
+		return _computer.Hardware.FirstOrDefault(x =>
+			x.HardwareType is HardwareType.GpuNvidia or HardwareType.GpuAmd or HardwareType.GpuIntel);
+	}
 
-    public IHardware? GetMemory()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Memory);
-    }
+	public IHardware? GetMemory()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Memory);
+	}
 
-    public IHardware? GetMotherboard()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Motherboard);
-    }
+	public IHardware? GetMotherboard()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Motherboard);
+	}
 
-    public IHardware? GetStorage()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Storage);
-    }
+	public IHardware? GetStorage()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Storage);
+	}
 
-    public IHardware? GetControllers()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.EmbeddedController);
-    }
+	public IHardware? GetControllers()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.EmbeddedController);
+	}
 
-    public IHardware? GetNetwork()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Network);
-    }
+	public IHardware? GetNetwork()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Network);
+	}
 
-    public IHardware? GetBattery()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Battery);
-    }
+	public IHardware? GetBattery()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Battery);
+	}
 
-    public IHardware? GetPsu()
-    {
-        return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Psu);
-    }
+	public IHardware? GetPsu()
+	{
+		return _computer.Hardware.FirstOrDefault(x => x.HardwareType is HardwareType.Psu);
+	}
 
-    public void UpdateHardware()
-    {
-        foreach (var hardware in _computer.Hardware)
-        {
-            hardware.Update();
-        }
-    }
+	public void UpdateHardware()
+	{
+		foreach (var hardware in _computer.Hardware) hardware.Update();
+	}
 }

@@ -12,37 +12,34 @@ namespace wpfAppMetro.ViewModels;
 // TODO: Finish decision on design and how to store the data
 public class HardwareMonitorViewModel : ObservableObject
 {
-    private HardwareMonitorHelper _helper;
-    public ObservableCollection<ISensor> LoadSensors { get; set; } = new ObservableCollection<ISensor>();
+	private readonly HardwareMonitorHelper _helper;
 
-    public HardwareMonitorViewModel()
-    {
-        _helper = HardwareMonitorHelper.Instance;
+	public HardwareMonitorViewModel()
+	{
+		_helper = HardwareMonitorHelper.Instance;
 
-        AppStateManager.Instance.UpdateTimerDict
-            .FirstOrDefault(x => x.Key == ETimer.Hardware.ToString()).Value.Elapsed += OnUpdate;
-        
-        PopulateCpuContainer();
-    }
+		AppStateManager.Instance.UpdateTimerDict
+			.FirstOrDefault(x => x.Key == ETimer.Hardware.ToString()).Value.Elapsed += OnUpdate;
 
-    public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
-    {
-        PopulateCpuContainer();
-    }
+		PopulateCpuContainer();
+	}
+	public ObservableCollection<ISensor> LoadSensors { get; set; } = new();
 
-    public void PopulateCpuContainer()
-    {
-        var list = _helper.GetCpu()?.Sensors.Where(x => x.SensorType is SensorType.Load).OrderBy(x => x.Index).ToList();
-        var cpu = _helper.GetCpu();
+	public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
+	{
+		PopulateCpuContainer();
+	}
 
-        Application.Current.Dispatcher.Invoke(() =>
-        {
-            LoadSensors.Clear();
+	public void PopulateCpuContainer()
+	{
+		var list = _helper.GetCpu()?.Sensors.Where(x => x.SensorType is SensorType.Load).OrderBy(x => x.Index).ToList();
+		var cpu = _helper.GetCpu();
 
-            for (var i = 0; i < list?.Count; i++)
-            {
-                LoadSensors.Add(list[i]);
-            }
-        });
-    }
+		Application.Current.Dispatcher.Invoke(() =>
+		{
+			LoadSensors.Clear();
+
+			for (var i = 0; i < list?.Count; i++) LoadSensors.Add(list[i]);
+		});
+	}
 }

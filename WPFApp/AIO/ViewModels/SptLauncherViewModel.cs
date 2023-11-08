@@ -4,9 +4,5 @@ namespace wpfAppMetro.ViewModels;
 
 public class SptLauncherViewModel : ObservableObject
 {
-    
-    public SptLauncherViewModel()
-    {
-        
-    }
+
 }

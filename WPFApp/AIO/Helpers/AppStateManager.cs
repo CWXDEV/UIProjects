@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Timers;
 using wpfAppMetro.Models.Enum;
 
@@ -7,43 +6,40 @@ namespace wpfAppMetro.Helpers;
 
 public class AppStateManager
 {
-    private static AppStateManager _instance = null;
-    private static readonly object Padlock = new object();
+	private static AppStateManager _instance;
+	private static readonly object Padlock = new();
 
-    public Dictionary<string, Timer> UpdateTimerDict = new Dictionary<string, Timer>();
+	public Dictionary<string, Timer> UpdateTimerDict = new();
 
-    public static AppStateManager Instance
-    {
-        get
-        {
-            lock (Padlock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new AppStateManager();
-                }
+	public AppStateManager()
+	{
+		UpdateTimerDict.Add(ETimer.Hardware.ToString(), new Timer(1000));
+		UpdateTimerDict.Add(ETimer.App.ToString(), new Timer(5000));
 
-                return _instance;
-            }
-        }
-    }
+		foreach (var timer in UpdateTimerDict) timer.Value.Start();
+	}
 
-    public AppStateManager()
-    {
-        UpdateTimerDict.Add(ETimer.Hardware.ToString(), new Timer(1000));
-        UpdateTimerDict.Add(ETimer.App.ToString(), new Timer(5000));
-        
-        foreach (var timer in UpdateTimerDict)
-        {
-            timer.Value.Start();
-        }
-    }
+	public static AppStateManager Instance
+	{
+		get
+		{
+			lock (Padlock)
+			{
+				if (_instance == null)
+				{
+					_instance = new AppStateManager();
+				}
 
-    public void UpdateTimerInterval(string key, int interval)
-    {
-        if (UpdateTimerDict.TryGetValue(key, out var timer))
-        {
-            timer.Interval = interval;
-        }
-    }
+				return _instance;
+			}
+		}
+	}
+
+	public void UpdateTimerInterval(string key, int interval)
+	{
+		if (UpdateTimerDict.TryGetValue(key, out var timer))
+		{
+			timer.Interval = interval;
+		}
+	}
 }

@@ -5,7 +5,6 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                 xmlns:local="clr-namespace:wpfAppMetro"
                  xmlns:core="clr-namespace:wpfAppMetro.Core"
                  xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
                  mc:Ignorable="d"
@@ -14,51 +13,43 @@
                  WindowStartupLocation="CenterScreen"
                  ResizeMode="CanMinimize">
 
-    <!-- https://github.com/MahApps/MahApps.Metro -->
+	<!-- https://github.com/MahApps/MahApps.Metro -->
 
-    <Window.DataContext>
-        <viewModels:MainViewModel />
-    </Window.DataContext>
+	<Window.DataContext>
+		<viewModels:MainViewModel />
+	</Window.DataContext>
 
-    <mah:MetroWindow.LeftWindowCommands>
-        <mah:WindowCommands>
-            <Button Click="LaunchGitHubSite" ToolTip="Open Repo for this app">
-                <iconPacks:PackIconModern Width="28" Height="28" Kind="SocialGithubOctocat" />
-            </Button>
-        </mah:WindowCommands>
-    </mah:MetroWindow.LeftWindowCommands>
+	<mah:MetroWindow.LeftWindowCommands>
+		<mah:WindowCommands>
+			<Button Click="LaunchGitHubSite" ToolTip="Open Repo for this app">
+				<iconPacks:PackIconModern Width="28" Height="28" Kind="SocialGithubOctocat" />
+			</Button>
+		</mah:WindowCommands>
+	</mah:MetroWindow.LeftWindowCommands>
 
-    <mah:MetroWindow.RightWindowCommands>
-        <mah:WindowCommands>
-            <Button ToolTip="Settings" Command="{Binding SettingsViewCommand}">
-                <iconPacks:PackIconModern Width="18" Height="18" Kind="Cog" />
-            </Button>
-        </mah:WindowCommands>
-    </mah:MetroWindow.RightWindowCommands>
+	<mah:MetroWindow.RightWindowCommands>
+		<mah:WindowCommands>
+			<Button ToolTip="Settings" Command="{Binding SettingsViewCommand}">
+				<iconPacks:PackIconModern Width="18" Height="18" Kind="Cog" />
+			</Button>
+		</mah:WindowCommands>
+	</mah:MetroWindow.RightWindowCommands>
 
-    <Grid>
-        <StackPanel x:Name="SideMenu" Width="45" HorizontalAlignment="Left" Background="#292929" ZIndex="2"
-                    MouseEnter="SideMenu_OnMouseEnter" MouseLeave="SideMenu_OnMouseLeave">
+	<Grid>
+		<StackPanel x:Name="SideMenu" Width="45" HorizontalAlignment="Left" Background="#292929" ZIndex="2"
+		            MouseEnter="SideMenu_OnMouseEnter" MouseLeave="SideMenu_OnMouseLeave">
 
-            <!-- Add new icon Radio Button to get a new menu item -->
-            <core:IconRadioButton Content="Home" Icon="Home" IsChecked="True" Command="{Binding HomeViewCommand}" />
-            <core:IconRadioButton Content="Hardware Monitor" Icon="Thermometer" Command="{Binding HardwareMonitorViewCommand}" />
-            <core:IconRadioButton Content="Spt Launcher" Icon="Rocket" Command="{Binding SptLauncherViewCommand}" />
+			<!-- Add new icon Radio Button to get a new menu item -->
+			<core:IconRadioButton Content="Home" Icon="Home" IsChecked="True" Command="{Binding HomeViewCommand}" />
+			<core:IconRadioButton Content="Hardware Monitor" Icon="Thermometer" Command="{Binding HardwareMonitorViewCommand}" />
+			<core:IconRadioButton Content="Spt Launcher" Icon="Rocket" Command="{Binding SptLauncherViewCommand}" />
 
-            <StackPanel.Resources>
-                <Storyboard x:Key="OpenSideMenu">
-                    <DoubleAnimation Storyboard.TargetName="SideMenu" Storyboard.TargetProperty="Width" By="5" To="200"
-                                     Duration="0:0:0.2" DecelerationRatio="0.5" />
-                </Storyboard>
+			<StackPanel.Resources>
 
-                <Storyboard x:Key="CloseSideMenu">
-                    <DoubleAnimation Storyboard.TargetName="SideMenu" Storyboard.TargetProperty="Width" By="5" To="45"
-                                     Duration="0:0:0.2" DecelerationRatio="0.5" />
-                </Storyboard>
-            </StackPanel.Resources>
-        </StackPanel>
+			</StackPanel.Resources>
+		</StackPanel>
 
-        <ContentControl Margin="65, 20, 20, 20" Content="{Binding CurrentView}" />
-    </Grid>
+		<ContentControl Margin="65, 20, 20, 20" Content="{Binding CurrentView}" />
+	</Grid>
 
 </mah:MetroWindow>

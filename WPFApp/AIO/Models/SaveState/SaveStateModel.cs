@@ -2,7 +2,6 @@
 
 public class SaveStateModel
 {
-    public HardwareMonitorModel? HardwareMonitorSave { get; set; }
-    public SptLaunchConfigModel[]? SptConfigSave { get; set; }
-
+	public HardwareMonitorModel? HardwareMonitorSave { get; set; }
+	public SptLaunchConfigModel[]? SptConfigSave { get; set; }
 }

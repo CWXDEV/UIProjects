@@ -9,66 +9,69 @@
              d:DesignWidth="600"
              Background="Transparent">
 
-    <UserControl.DataContext>
-        <viewModels:HardwareMonitorViewModel />
-    </UserControl.DataContext>
+	<UserControl.DataContext>
+		<viewModels:HardwareMonitorViewModel />
+	</UserControl.DataContext>
 
-    <StackPanel x:Name="Container">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="CpuContainer"/>
-                <ColumnDefinition x:Name="GpuContainer"/>
-                <ColumnDefinition x:Name="RamContainer"/>
-            </Grid.ColumnDefinitions>
-            
-            <Border Grid.Column="0" Background="Chocolate" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
-                <StackPanel>
-                    <TextBlock Text="CPU NAME" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
-            
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            
-                            <TextBlock Grid.Column="0" Text="#" Foreground="White" FontSize="14"/>
-                            <TextBlock Grid.Column="1" Text="Load" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
-                            <TextBlock Grid.Column="2" Text="Temp" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
-                            <TextBlock Grid.Column="3" Text="Clock" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
-                        </Grid>
-                        
-                        <Grid Grid.Row="1">
-                            <ItemsControl ItemsSource="{Binding LoadSensors}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            
-                                            <TextBlock Grid.Column="0" Text="{Binding Index}" Foreground="White" FontSize="10"/>
-                                            <TextBlock Grid.Column="1" Text="{Binding Value}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
-                                            <TextBlock Grid.Column="2" Text="{Binding SensorType}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
-                                            <TextBlock Grid.Column="3" Text="{Binding Max}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
-                    </Grid>
-                </StackPanel>
-            </Border>
-        </Grid>
-    </StackPanel>
+	<StackPanel x:Name="Container">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition x:Name="CpuContainer" />
+				<ColumnDefinition x:Name="GpuContainer" />
+				<ColumnDefinition x:Name="RamContainer" />
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.Column="0" Background="Chocolate" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+				<StackPanel>
+					<TextBlock Text="CPU NAME" Foreground="White" FontSize="16" HorizontalAlignment="Center" />
+
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+
+						<Grid Grid.Row="0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Grid.Column="0" Text="#" Foreground="White" FontSize="14" />
+							<TextBlock Grid.Column="1" Text="Load" Foreground="White" FontSize="14" HorizontalAlignment="Center" />
+							<TextBlock Grid.Column="2" Text="Temp" Foreground="White" FontSize="14" HorizontalAlignment="Center" />
+							<TextBlock Grid.Column="3" Text="Clock" Foreground="White" FontSize="14" HorizontalAlignment="Center" />
+						</Grid>
+
+						<Grid Grid.Row="1">
+							<ItemsControl ItemsSource="{Binding LoadSensors}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition />
+												<ColumnDefinition />
+												<ColumnDefinition />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+
+											<TextBlock Grid.Column="0" Text="{Binding Index}" Foreground="White" FontSize="10" />
+											<TextBlock Grid.Column="1" Text="{Binding Value}" Foreground="White" FontSize="10"
+											           HorizontalAlignment="Center" />
+											<TextBlock Grid.Column="2" Text="{Binding SensorType}" Foreground="White" FontSize="10"
+											           HorizontalAlignment="Center" />
+											<TextBlock Grid.Column="3" Text="{Binding Max}" Foreground="White" FontSize="10"
+											           HorizontalAlignment="Center" />
+										</Grid>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</Grid>
+					</Grid>
+				</StackPanel>
+			</Border>
+		</Grid>
+	</StackPanel>
 </UserControl>

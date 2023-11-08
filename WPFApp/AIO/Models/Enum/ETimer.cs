@@ -2,6 +2,6 @@
 
 public enum ETimer
 {
-    Hardware,
-    App
+	Hardware,
+	App
 }

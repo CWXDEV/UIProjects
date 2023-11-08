@@ -2,5 +2,5 @@
 
 public class HardwareMonitorModel
 {
-    public int? Timer { get; set; }
+	public int? Timer { get; set; }
 }
