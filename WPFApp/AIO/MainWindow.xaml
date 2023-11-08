@@ -45,7 +45,14 @@
 			<core:IconRadioButton Content="Spt Launcher" Icon="Rocket" Command="{Binding SptLauncherViewCommand}" />
 
 			<StackPanel.Resources>
-
+				<Storyboard x:Key="OpenSideMenu">
+					<DoubleAnimation Storyboard.TargetName="SideMenu" Storyboard.TargetProperty="Width" By="5" To="200"
+					                 Duration="0:0:0.2" DecelerationRatio="0.5" />
+				</Storyboard>
+				<Storyboard x:Key="CloseSideMenu">
+					<DoubleAnimation Storyboard.TargetName="SideMenu" Storyboard.TargetProperty="Width" By="5" To="45"
+					                 Duration="0:0:0.2" DecelerationRatio="0.5" />
+				</Storyboard>
 			</StackPanel.Resources>
 		</StackPanel>
 
