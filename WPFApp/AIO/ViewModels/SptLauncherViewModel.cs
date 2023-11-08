@@ -1,6 +1,12 @@
-﻿namespace wpfAppMetro.ViewModels;
+﻿using wpfAppMetro.Core;
 
-public class SptLauncherViewModel
+namespace wpfAppMetro.ViewModels;
+
+public class SptLauncherViewModel : ObservableObject
 {
     
+    public SptLauncherViewModel()
+    {
+        
+    }
 }

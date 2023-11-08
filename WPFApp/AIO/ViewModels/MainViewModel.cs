@@ -10,10 +10,12 @@ public class MainViewModel : ObservableObject
     public RelayCommand HomeViewCommand { get; set; }
     public RelayCommand HardwareMonitorViewCommand { get; set; }
     public RelayCommand SettingsViewCommand { get; set; }
+    public RelayCommand SptLauncherViewCommand { get; set; }
     
     public HomeViewModel HomeVm { get; set; }
     public HardwareMonitorViewModel HardwareMonitorVm { get; set; }
     public SettingsViewModel SettingsVm { get; set; }
+    public SptLauncherViewModel SptLauncherVm { get; set; }
 
     private object _currentView;
 
@@ -34,11 +36,13 @@ public class MainViewModel : ObservableObject
         HomeVm = new HomeViewModel();
         HardwareMonitorVm = new HardwareMonitorViewModel();
         SettingsVm = new SettingsViewModel();
+        SptLauncherVm = new SptLauncherViewModel();
 
         // RelayCommands
         HomeViewCommand = new RelayCommand(o => { CurrentView = HomeVm; });
         HardwareMonitorViewCommand = new RelayCommand(o => { CurrentView = HardwareMonitorVm; });
         SettingsViewCommand = new RelayCommand(o => { CurrentView = SettingsVm; });
+        SptLauncherViewCommand = new RelayCommand(o => { CurrentView = SptLauncherVm; });
         
         CurrentView = HomeVm;
     }

@@ -43,6 +43,7 @@
             <!-- Add new icon Radio Button to get a new menu item -->
             <core:IconRadioButton Content="Home" Icon="Home" IsChecked="True" Command="{Binding HomeViewCommand}" />
             <core:IconRadioButton Content="Hardware Monitor" Icon="Thermometer" Command="{Binding HardwareMonitorViewCommand}" />
+            <core:IconRadioButton Content="Spt Launcher" Icon="Rocket" Command="{Binding SptLauncherViewCommand}" />
 
             <StackPanel.Resources>
                 <Storyboard x:Key="OpenSideMenu">
