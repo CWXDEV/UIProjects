@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
+             xmlns:converters="clr-namespace:wpfAppMetro.Models.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="600"
              Background="Transparent">
+
+	<UserControl.Resources>
+		<converters:FloatToIntConverter x:Key="FloatToIntConverter"/>
+	</UserControl.Resources>
 
 	<UserControl.DataContext>
 		<viewModels:HardwareMonitorViewModel />
@@ -46,7 +51,7 @@
 						</Grid>
 
 						<Grid Grid.Row="1">
-							<ItemsControl ItemsSource="{Binding LoadSensors}">
+							<ItemsControl ItemsSource="{Binding CpuCores}">
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
 										<Grid>
@@ -57,12 +62,12 @@
 												<ColumnDefinition />
 											</Grid.ColumnDefinitions>
 
-											<TextBlock Grid.Column="0" Text="{Binding Index}" Foreground="White" FontSize="10" />
-											<TextBlock Grid.Column="1" Text="{Binding Value}" Foreground="White" FontSize="10"
+											<TextBlock Grid.Column="0" Text="{Binding Number, Converter={StaticResource FloatToIntConverter}}" Foreground="White" FontSize="10" />
+											<TextBlock Grid.Column="1" Text="{Binding Load, Converter={StaticResource FloatToIntConverter}}" Foreground="White" FontSize="10"
 											           HorizontalAlignment="Center" />
-											<TextBlock Grid.Column="2" Text="{Binding SensorType}" Foreground="White" FontSize="10"
+											<TextBlock Grid.Column="2" Text="{Binding Temp, Converter={StaticResource FloatToIntConverter}}" Foreground="White" FontSize="10"
 											           HorizontalAlignment="Center" />
-											<TextBlock Grid.Column="3" Text="{Binding Max}" Foreground="White" FontSize="10"
+											<TextBlock Grid.Column="3" Text="{Binding  ClockSpeed, Converter={StaticResource FloatToIntConverter}}" Foreground="White" FontSize="10"
 											           HorizontalAlignment="Center" />
 										</Grid>
 									</DataTemplate>

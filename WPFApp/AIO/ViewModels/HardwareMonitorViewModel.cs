@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Timers;
 using System.Windows;
+using LibreHardware_Helper;
+using LibreHardware_Helper.Model.HardwareData.CPU;
 using LibreHardwareMonitor.Hardware;
 using wpfAppMetro.Core;
 using wpfAppMetro.Helpers;
@@ -12,34 +14,62 @@ namespace wpfAppMetro.ViewModels;
 // TODO: Finish decision on design and how to store the data
 public class HardwareMonitorViewModel : ObservableObject
 {
-	private readonly HardwareMonitorHelper _helper;
-
 	public HardwareMonitorViewModel()
 	{
-		_helper = HardwareMonitorHelper.Instance;
-
 		AppStateManager.Instance.UpdateTimerDict
 			.FirstOrDefault(x => x.Key == ETimer.Hardware.ToString()).Value.Elapsed += OnUpdate;
 
-		PopulateCpuContainer();
+		TestWaffleTool();
 	}
-	public ObservableCollection<ISensor> LoadSensors { get; set; } = new();
+
+	public bool IsTempVisible { get; set; } = true;
+	private bool WasTempChecked { get; set; }
+	public ObservableCollection<CpuCore> CpuCores { get; set; } = new();
 
 	public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
 	{
-		PopulateCpuContainer();
+		TestWaffleTool();
 	}
 
-	public void PopulateCpuContainer()
+	private void TestWaffleTool()
 	{
-		var list = _helper.GetCpu()?.Sensors.Where(x => x.SensorType is SensorType.Load).OrderBy(x => x.Index).ToList();
-		var cpu = _helper.GetCpu();
+		var test = new LibreHardwareHelper();
+		var cpus = test.GetCpuCores().ToList();
+
+		if (!WasTempChecked)
+		{
+			if (cpus[0].Temp == 0)
+			{
+				IsTempVisible = false;
+				DisableTempCol();
+			}
+
+			WasTempChecked = true;
+		}
+
+		cpus.Sort((x, y) => x.Number.CompareTo(y.Number));
 
 		Application.Current.Dispatcher.Invoke(() =>
 		{
-			LoadSensors.Clear();
+			CpuCores.Clear();
 
-			for (var i = 0; i < list?.Count; i++) LoadSensors.Add(list[i]);
+			foreach (var core in cpus)
+			{
+				CpuCores.Add(core);
+			}
 		});
+	}
+
+	private void DisableTempCol()
+	{
+		if (WasTempChecked && !IsTempVisible)
+		{
+
+			Application.Current.Dispatcher.Invoke(() =>
+			{
+				OnPropertyChanged("IsTempVisible");
+
+			});
+		}
 	}
 }
