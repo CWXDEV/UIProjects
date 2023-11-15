@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using LibreHardware_Helper;
 using LibreHardware_Helper.Model.HardwareData.CPU;
 using LibreHardwareMonitor.Hardware;
-using wpfAppMetro.Core;
+using wpfAppMetro.Models;
 using wpfAppMetro.Helpers;
 using wpfAppMetro.Models.Enum;
 

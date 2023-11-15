@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="300"
-             d:DesignWidth="600"
+             d:DesignHeight="1000"
+             d:DesignWidth="1000"
              Background="Transparent">
 
 	<UserControl.DataContext >
@@ -21,51 +21,16 @@
                 <ColumnDefinition x:Name="RamContainer" />
             </Grid.ColumnDefinitions>
 
+            <!-- temp, clock, power, load -->
+
             <Border Grid.Column="0" Background="Chocolate" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
                 <StackPanel>
-                    <TextBlock Text="CPU NAME" Foreground="White" FontSize="16" HorizontalAlignment="Center" />
-
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" Text="#" Foreground="White" FontSize="14" />
-                            <TextBlock Grid.Column="1" Text="Load" Foreground="White" FontSize="14" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="2" Text="Temp" Foreground="White" FontSize="14" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="3" Text="Clock" Foreground="White" FontSize="14" HorizontalAlignment="Center" />
-                        </Grid>
-
-                        <Grid Grid.Row="1">
-                            <ItemsControl ItemsSource="{Binding CpuData.Cores}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Grid.Column="0" Text="{Binding Number}" Foreground="White" FontSize="10" />
-                                            <TextBlock Grid.Column="1" Text="{Binding Load}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
-                                            <TextBlock Grid.Column="2" Text="{Binding Temp}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
-                                            <TextBlock Grid.Column="3" Text="{Binding  ClockSpeed}" Foreground="White" FontSize="10" HorizontalAlignment="Center" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
                     </Grid>
                 </StackPanel>
             </Border>

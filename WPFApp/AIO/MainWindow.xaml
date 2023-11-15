@@ -5,7 +5,7 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                 xmlns:core="clr-namespace:wpfAppMetro.Core"
+                 xmlns:models="clr-namespace:wpfAppMetro.Models"
                  xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
                  mc:Ignorable="d"
                  Height="700"
@@ -40,9 +40,9 @@
 		            MouseEnter="SideMenu_OnMouseEnter" MouseLeave="SideMenu_OnMouseLeave">
 
 			<!-- Add new icon Radio Button to get a new menu item -->
-			<core:IconRadioButton Content="Home" Icon="Home" IsChecked="True" Command="{Binding HomeViewCommand}" />
-			<core:IconRadioButton Content="Hardware Monitor" Icon="Thermometer" Command="{Binding HardwareMonitorViewCommand}" />
-			<core:IconRadioButton Content="Spt Launcher" Icon="Rocket" Command="{Binding SptLauncherViewCommand}" />
+			<models:IconRadioButton Content="Home" Icon="Home" IsChecked="True" Command="{Binding HomeViewCommand}" />
+			<models:IconRadioButton Content="Hardware Monitor" Icon="Thermometer" Command="{Binding HardwareMonitorViewCommand}" />
+			<models:IconRadioButton Content="Spt Launcher" Icon="Rocket" Command="{Binding SptLauncherViewCommand}" />
 
 			<StackPanel.Resources>
 				<Storyboard x:Key="OpenSideMenu">

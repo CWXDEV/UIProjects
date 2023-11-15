@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using wpfAppMetro.Core;
 using wpfAppMetro.Views;
 
 namespace wpfAppMetro.ViewModels;
