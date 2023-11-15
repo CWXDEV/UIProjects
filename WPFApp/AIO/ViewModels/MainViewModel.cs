@@ -1,48 +1,42 @@
-﻿using wpfAppMetro.Core;
+﻿using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using wpfAppMetro.Core;
+using wpfAppMetro.Views;
 
 namespace wpfAppMetro.ViewModels;
 
-public class MainViewModel : ObservableObject
+public partial class MainViewModel : ObservableObject
 {
-
-	private object _currentView;
-
 	// new "page" instantiate Model, Instantiate Relay
 	public MainViewModel()
 	{
 		// ViewModels
-		HomeVm = new HomeViewModel();
-		HardwareMonitorVm = new HardwareMonitorViewModel();
-		SettingsVm = new SettingsViewModel();
-		SptLauncherVm = new SptLauncherViewModel();
+		HomeV = new HomeView();
+		HardwareMonitorV = new HardwareMonitorView();
+		SettingsV = new SettingsView();
+		SptLauncherV = new SptLauncherView();
 
 		// RelayCommands
-		HomeViewCommand = new RelayCommand(o => { CurrentView = HomeVm; });
-		HardwareMonitorViewCommand = new RelayCommand(o => { CurrentView = HardwareMonitorVm; });
-		SettingsViewCommand = new RelayCommand(o => { CurrentView = SettingsVm; });
-		SptLauncherViewCommand = new RelayCommand(o => { CurrentView = SptLauncherVm; });
+		HomeViewCommand = new RelayCommand(() => { CurrentView = HomeV; });
+		HardwareMonitorViewCommand = new RelayCommand(() => { CurrentView = HardwareMonitorV; });
+		SettingsViewCommand = new RelayCommand(() => { CurrentView = SettingsV; });
+		SptLauncherViewCommand = new RelayCommand(() => { CurrentView = SptLauncherV; });
 
-		CurrentView = HomeVm;
+		CurrentView = HomeV;
 	}
+
+	[ObservableProperty]
+	private object _currentView;
 
 	// new "page" add new RelayCommand, NewPageVM
-	public RelayCommand HomeViewCommand { get; set; }
-	public RelayCommand HardwareMonitorViewCommand { get; set; }
-	public RelayCommand SettingsViewCommand { get; set; }
-	public RelayCommand SptLauncherViewCommand { get; set; }
+	public ICommand HomeViewCommand { get; set; }
+	public ICommand HardwareMonitorViewCommand { get; set; }
+	public ICommand SettingsViewCommand { get; set; }
+	public ICommand SptLauncherViewCommand { get; set; }
 
-	public HomeViewModel HomeVm { get; set; }
-	public HardwareMonitorViewModel HardwareMonitorVm { get; set; }
-	public SettingsViewModel SettingsVm { get; set; }
-	public SptLauncherViewModel SptLauncherVm { get; set; }
-
-	public object CurrentView
-	{
-		get => _currentView;
-		set
-		{
-			_currentView = value;
-			OnPropertyChanged();
-		}
-	}
+	public HomeView HomeV { get; set; }
+	public HardwareMonitorView HardwareMonitorV { get; set; }
+	public SettingsView SettingsV { get; set; }
+	public SptLauncherView SptLauncherV { get; set; }
 }

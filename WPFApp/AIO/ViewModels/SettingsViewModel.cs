@@ -1,7 +1,8 @@
-﻿using wpfAppMetro.Core;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using wpfAppMetro.Core;
 
 namespace wpfAppMetro.ViewModels;
 
-public class SettingsViewModel : ObservableObject
+public partial class SettingsViewModel : ObservableObject
 {
 }

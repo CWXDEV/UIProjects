@@ -10,27 +10,8 @@
 				<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/dark.steel.xaml" />
-				<ResourceDictionary Source="Themes/IconRadioButton.xaml" />
+				<ResourceDictionary Source="Styles/IconRadioButton.xaml" />
 			</ResourceDictionary.MergedDictionaries>
-
-			<!-- Each time a new page is made, add this again -->
-			<DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-				<view:HomeView />
-			</DataTemplate>
-
-			<DataTemplate DataType="{x:Type viewModel:HardwareMonitorViewModel}">
-				<view:HardwareMonitorView />
-			</DataTemplate>
-
-			<DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-				<view:SettingsView />
-			</DataTemplate>
-
-			<DataTemplate DataType="{x:Type viewModel:SptLauncherViewModel}">
-				<view:SptLauncherView />
-			</DataTemplate>
-
 		</ResourceDictionary>
-
 	</Application.Resources>
 </Application>
