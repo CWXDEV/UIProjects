@@ -1,1 +1,0 @@
-Backup zip of a WPF app set up with MVVM and Metro core/icons

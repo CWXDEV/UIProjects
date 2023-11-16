@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <RootNamespace>AIO</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+        <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.3-pre256"/>
+        <PackageReference Include="MahApps.Metro" Version="3.0.0-alpha0457"/>
+        <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="LibreHardwareHelper">
+        <HintPath>Resources\Shared\LibreHardwareHelper.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
