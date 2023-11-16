@@ -9,31 +9,113 @@
              d:DesignWidth="1000"
              Background="Transparent">
 
-	<UserControl.DataContext >
+	<UserControl.DataContext>
 		<viewModels:HardwareMonitorViewModel />
 	</UserControl.DataContext>
 
-	    <StackPanel x:Name="Container">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="CpuContainer" />
-                <ColumnDefinition x:Name="GpuContainer" />
-                <ColumnDefinition x:Name="RamContainer" />
-            </Grid.ColumnDefinitions>
+	<StackPanel x:Name="Container">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition x:Name="CpuContainer" />
+				<ColumnDefinition x:Name="GpuContainer" />
+				<ColumnDefinition x:Name="RamContainer" />
+			</Grid.ColumnDefinitions>
 
-            <!-- temp, clock, power, load -->
+			<!-- temp, clock, power, load -->
 
-            <Border Grid.Column="0" Background="Chocolate" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
-                <StackPanel>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                    </Grid>
-                </StackPanel>
-            </Border>
-        </Grid>
-    </StackPanel>
+			<Border Grid.Column="0" Background="Chocolate" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+				<StackPanel>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition />
+							<RowDefinition />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+
+						<!-- Temp -->
+						<StackPanel Grid.Row="0">
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+
+								<!-- Temp progress bar -->
+								<Grid Grid.Row="0">
+									<ProgressBar Minimum="0" Maximum="120" Orientation="Horizontal"
+									             Value="{Binding CpuData.Temps.CoreAverage, Mode=OneWay}" />
+								</Grid>
+
+								<!-- Temp Label and reading -->
+								<Grid Grid.Row="1">
+									<TextBlock Text="Temperature" HorizontalAlignment="Left" />
+									<TextBlock
+										Text="{Binding CpuData.Temps.CoreAverage, Mode=OneWay, Converter={StaticResource FloatToStringTempConverter}}"
+										HorizontalAlignment="Right" />
+								</Grid>
+							</Grid>
+						</StackPanel>
+
+						<!-- Clock -->
+						<StackPanel Grid.Row="1">
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+
+								<!-- Clock progress bar -->
+								<Grid Grid.Row="0">
+									<ProgressBar Minimum="0" Maximum="8000" Orientation="Horizontal"
+									             Value="{Binding CpuData.Cores[0].ClockSpeed, Mode=OneWay}" />
+								</Grid>
+
+								<!-- Clock Label and reading -->
+								<Grid Grid.Row="1">
+									<TextBlock Text="Clock" HorizontalAlignment="Left" />
+									<TextBlock
+										Text="{Binding CpuData.Cores[0].ClockSpeed, Mode=OneWay, Converter={StaticResource FloatToStringHertzConverter}}"
+										HorizontalAlignment="Right" />
+								</Grid>
+							</Grid>
+						</StackPanel>
+
+						<!-- Power -->
+						<StackPanel Grid.Row="2">
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+
+								<!-- Power progress bar -->
+								<Grid Grid.Row="0">
+									<ProgressBar Minimum="0" Maximum="1000" Orientation="Horizontal"
+									             Value="{Binding CpuData.Power.Package, Mode=OneWay}" />
+								</Grid>
+
+								<!-- Power Label and reading -->
+								<Grid Grid.Row="1">
+									<TextBlock Text="Power" HorizontalAlignment="Left" />
+									<TextBlock
+										Text="{Binding CpuData.Power.Package, Mode=OneWay, Converter={StaticResource FloatToStringHertzConverter}}"
+										HorizontalAlignment="Right" />
+								</Grid>
+							</Grid>
+						</StackPanel>
+						<!-- Power, load -->
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<!-- CPU Name, Icon -->
+					</Grid>
+				</StackPanel>
+			</Border>
+		</Grid>
+	</StackPanel>
 </UserControl>

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using System.Timers;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LibreHardware_Helper;
 using LibreHardware_Helper.Model.HardwareData.CPU;
-using LibreHardwareMonitor.Hardware;
-using wpfAppMetro.Models;
 using wpfAppMetro.Helpers;
 using wpfAppMetro.Models.Enum;
 
@@ -28,11 +24,11 @@ public partial class HardwareMonitorViewModel : ObservableObject
 	private Visibility _isTempVisible = Visibility.Visible;
 
 	[ObservableProperty]
-	private CpuData _cpuData;
+	private CpuData? _cpuData;
 
 	public void OnUpdate(object? sender, ElapsedEventArgs elapsedEventArgs)
 	{
-		CpuData.Update();
+		CpuData?.Update();
 	}
 
 	private void AddCoresToList()
