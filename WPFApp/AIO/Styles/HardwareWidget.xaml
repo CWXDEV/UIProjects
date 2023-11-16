@@ -1,0 +1,90 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:wpfAppMetro.Models"
+                    xmlns:converters="clr-namespace:wpfAppMetro.Models.Converters"
+                    >
+
+	<converters:FloatToStringTempConverter x:Key="FloatToStringTempConverter"/>
+	<converters:FloatToStringHertzConverter x:Key="FloatToStringHertzConverter"/>
+	<converters:FloatToStringPowerConverter x:Key="FloatToStringPowerConverter"/>
+	<converters:FloatToStringLoadConverter x:Key="FloatToStringLoadConverter"/>
+
+	<Style TargetType="{x:Type local:HardwareWidget}">
+		<Style.Setters>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type local:HardwareWidget}">
+						<Grid>
+							<StackPanel>
+								<Grid>
+									<!-- Temp -->
+									<Grid.RowDefinitions>
+										<RowDefinition />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+
+									<Grid Grid.Row="0">
+										<ProgressBar Minimum="0" Maximum="120" Orientation="Horizontal" Value="{Binding Temp, RelativeSource={RelativeSource TemplatedParent}}"/>
+									</Grid>
+
+									<Grid Grid.Row="1">
+										<TextBlock Text="Temperature" HorizontalAlignment="Left" />
+										<TextBlock Text="{Binding Temp, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FloatToStringTempConverter}}" HorizontalAlignment="Right"/>
+									</Grid>
+								</Grid>
+								<Grid>
+									<!-- Clock -->
+									<Grid.RowDefinitions>
+										<RowDefinition />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+
+									<Grid Grid.Row="0">
+										<ProgressBar Minimum="0" Maximum="8000" Orientation="Horizontal" Value="{Binding Clock, RelativeSource={RelativeSource TemplatedParent}}"/>
+									</Grid>
+
+									<Grid Grid.Row="1">
+										<TextBlock Text="Clock" HorizontalAlignment="Left" />
+										<TextBlock Text="{Binding Clock, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FloatToStringHertzConverter}}" HorizontalAlignment="Right"/>
+									</Grid>
+								</Grid>
+								<Grid>
+									<!-- Power -->
+									<Grid.RowDefinitions>
+										<RowDefinition />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+
+									<Grid Grid.Row="0">
+										<ProgressBar Minimum="0" Maximum="300" Orientation="Horizontal" Value="{Binding Power, RelativeSource={RelativeSource TemplatedParent}}"/>
+									</Grid>
+
+									<Grid Grid.Row="1">
+										<TextBlock Text="Power" HorizontalAlignment="Left" />
+										<TextBlock Text="{Binding Power, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FloatToStringPowerConverter}}" HorizontalAlignment="Right"/>
+									</Grid>
+								</Grid>
+								<Grid>
+									<!-- Load -->
+									<Grid.RowDefinitions>
+										<RowDefinition />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+
+									<Grid Grid.Row="0">
+										<ProgressBar Minimum="0" Maximum="100" Orientation="Horizontal" Value="{Binding Load, RelativeSource={RelativeSource TemplatedParent}}"/>
+									</Grid>
+
+									<Grid Grid.Row="1">
+										<TextBlock Text="Load" HorizontalAlignment="Left" />
+										<TextBlock Text="{Binding Load, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FloatToStringLoadConverter}}" HorizontalAlignment="Right"/>
+									</Grid>
+								</Grid>
+							</StackPanel>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style.Setters>
+	</Style>
+</ResourceDictionary>

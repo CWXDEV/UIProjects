@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace wpfAppMetro.Models.Converters;
 
-public class FloatToStringTempConverter : IValueConverter
+public class FloatToStringPowerConverter : IValueConverter
 {
 	/// <summary>Converts a value. </summary>
 	/// <param name="value">The value produced by the binding source.</param>
@@ -16,10 +16,10 @@ public class FloatToStringTempConverter : IValueConverter
 	{
 		if (value is float && targetType == typeof(string))
 		{
-			return Math.Ceiling((float) value).ToString(CultureInfo.InvariantCulture) + " °C";
+			return Math.Ceiling((float) value).ToString(CultureInfo.InvariantCulture) + " W";
 		}
 
-		throw new InvalidOperationException("Converter can only convert from float to Temp String.");
+		throw new InvalidOperationException("Converter can only convert from float to Power String.");
 	}
 
 	/// <summary>Converts a value. </summary>

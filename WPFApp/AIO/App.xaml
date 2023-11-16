@@ -10,11 +10,14 @@
 				<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
 				<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/dark.steel.xaml" />
 				<ResourceDictionary Source="Styles/IconRadioButton.xaml" />
+				<ResourceDictionary Source="Styles/HardwareWidget.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<converters:FloatToIntConverter x:Key="FloatToIntConverter"/>
 			<converters:FloatToStringTempConverter x:Key="FloatToStringTempConverter"/>
 			<converters:FloatToStringHertzConverter x:Key="FloatToStringHertzConverter"/>
+			<converters:FloatToStringPowerConverter x:Key="FloatToStringPowerConverter"/>
+			<converters:FloatToStringLoadConverter x:Key="FloatToStringLoadConverter"/>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
