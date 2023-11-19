@@ -22,7 +22,14 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
-			<Border Grid.Column="0" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<Border Grid.Column="0" Grid.Row="0" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
 
 				<models:HardwareBarWidget Temp="{Binding CpuData.Temps.CoreAverage, Mode=OneWay}"
 				                       Clock="{Binding CpuData.Cores[0].ClockSpeed, Mode=OneWay}"
@@ -32,23 +39,32 @@
 
 			</Border>
 
-			<Border Grid.Column="1" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+			<Border Grid.Column="1" Grid.Row="0" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
 
-				<models:HardwareBarWidget Temp="{Binding CpuData.Temps.CoreAverage, Mode=OneWay}"
-				                       Clock="{Binding CpuData.Cores[1].ClockSpeed, Mode=OneWay}"
-				                       Power="{Binding CpuData.Power.Package, Mode=OneWay}"
-				                       Load="{Binding CpuData.Loads.Total, Mode=OneWay}"
-				                       Title="{Binding CpuData.Name, Mode=OneWay}"/>
+				<models:HardwareBarWidget Temp="{Binding GpuData.Temps.Core, Mode=OneWay}"
+				                       Clock="{Binding GpuData.Clocks.Core, Mode=OneWay}"
+				                       Power="{Binding GpuData.Loads.BoardPower, Mode=OneWay}"
+				                       Load="{Binding GpuData.Loads.Core, Mode=OneWay}"
+				                       Title="{Binding GpuData.Name, Mode=OneWay}"/>
 			</Border>
 
-			<Border Grid.Column="2" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+			<Border Grid.Column="2" Grid.Row="0" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
 
-				<models:HardwareBarWidget Temp="{Binding CpuData.Temps.CoreAverage, Mode=OneWay}"
-				                       Clock="{Binding CpuData.Cores[2].ClockSpeed, Mode=OneWay}"
-				                       Power="{Binding CpuData.Power.Package, Mode=OneWay}"
-				                       Load="{Binding CpuData.Loads.Total, Mode=OneWay}"
-				                       Title="{Binding CpuData.Name, Mode=OneWay}"/>
+				<models:HardwareRadialWidget Current="{Binding PhysicalMemoryGeometry}" Title="Physical"/>
 			</Border>
+
+			<Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+
+			</Border>
+
+			<Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+
+			</Border>
+
+			<Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Background="{StaticResource Aiolight}" Margin="10" Padding="10" CornerRadius="10" BorderThickness="1">
+
+			</Border>
+
 		</Grid>
 	</StackPanel>
 </UserControl>

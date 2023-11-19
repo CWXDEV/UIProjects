@@ -5,7 +5,6 @@ namespace wpfAppMetro.Views;
 
 public partial class HardwareMonitorView : UserControl
 {
-	public bool testing { get; set; }
 	public HardwareMonitorView()
 	{
 		InitializeComponent();
