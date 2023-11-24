@@ -22,4 +22,9 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\Images\app.ico" />
+      <Resource Include="Resources\Images\app.ico" />
+    </ItemGroup>
+
 </Project>

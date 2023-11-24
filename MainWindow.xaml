@@ -7,6 +7,8 @@
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  xmlns:models="clr-namespace:AIO.Models"
                  xmlns:viewModels="clr-namespace:AIO.ViewModels"
+                 Icon=".\Resources\Images\app.ico"
+                 ShowIconOnTitleBar="False"
                  mc:Ignorable="d"
                  Height="700"
                  Width="1100"
