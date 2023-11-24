@@ -1,44 +1,69 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
+using LiveChartsCore;
+using LiveChartsCore.Measure;
 
 namespace wpfAppMetro.Models;
 
 public class HardwareRadialWidget : Control
 {
-	public static readonly DependencyProperty MinProperty = DependencyProperty.RegisterAttached("Min", typeof(float),
-		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata((float) 0.0));
+	public static readonly DependencyProperty SeriesProperty = DependencyProperty.RegisterAttached("Series", typeof(IEnumerable<ISeries>),
+		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(default(IEnumerable<ISeries>)));
 
-	public static readonly DependencyProperty CurrentProperty = DependencyProperty.RegisterAttached("Current", typeof(float),
-		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata((float) 0.0));
+	public static readonly DependencyProperty InitialRotationProperty = DependencyProperty.RegisterAttached("InitialRotation", typeof(double),
+		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(default(double)));
 
-	public static readonly DependencyProperty MaxProperty = DependencyProperty.RegisterAttached("Max", typeof(float),
-		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata((float) 0.0));
+	public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.RegisterAttached("MaxAngle", typeof(double),
+		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(default(double)));
+
+	public static readonly DependencyProperty MinValueProperty = DependencyProperty.RegisterAttached("MinValue", typeof(double),
+		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(default(double)));
+
+	public static readonly DependencyProperty MaxValueProperty = DependencyProperty.RegisterAttached("MaxValue", typeof(double),
+		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(default(double)));
 
 	public static readonly DependencyProperty TitleProperty = DependencyProperty.RegisterAttached("Title", typeof(string),
-		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(""));
+		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(default(string)));
 
-	public HardwareRadialWidget()
+	public static readonly DependencyProperty MemoryUsageProperty = DependencyProperty.RegisterAttached("MemoryUsage", typeof(string),
+		typeof(HardwareRadialWidget), new FrameworkPropertyMetadata(default(string)));
+
+	static HardwareRadialWidget()
 	{
 		DefaultStyleKeyProperty.OverrideMetadata(typeof(HardwareRadialWidget),
 			new FrameworkPropertyMetadata(typeof(HardwareRadialWidget)));
 	}
 
-	public float Min
+	public float Series
 	{
-		get => (float) GetValue(MinProperty);
-		set => SetValue(MinProperty, value);
+		get => (float) GetValue(SeriesProperty);
+		set => SetValue(SeriesProperty, value);
 	}
 
-	public float Current
+	public double InitialRotation
 	{
-		get => (float) GetValue(CurrentProperty);
-		set => SetValue(CurrentProperty, value);
+		get => (double) GetValue(InitialRotationProperty);
+		set => SetValue(InitialRotationProperty, value);
 	}
 
-	public float Max
+	public double MaxAngle
 	{
-		get => (float) GetValue(MaxProperty);
-		set => SetValue(MaxProperty, value);
+		get => (double) GetValue(MaxAngleProperty);
+		set => SetValue(MaxAngleProperty, value);
+	}
+
+	public double MinValue
+	{
+		get => (double) GetValue(MinValueProperty);
+		set => SetValue(MinValueProperty, value);
+	}
+
+	public double MaxValue
+	{
+		get => (double) GetValue(MaxValueProperty);
+		set => SetValue(MaxValueProperty, value);
 	}
 
 	public string Title
@@ -46,4 +71,11 @@ public class HardwareRadialWidget : Control
 		get => (string) GetValue(TitleProperty);
 		set => SetValue(TitleProperty, value);
 	}
+
+	public string MemoryUsage
+	{
+		get => (string) GetValue(MemoryUsageProperty);
+		set => SetValue(MemoryUsageProperty, value);
+	}
+
 }

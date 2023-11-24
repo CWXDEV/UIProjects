@@ -14,6 +14,7 @@
                  ResizeMode="CanMinimize">
 
 	<!-- https://github.com/MahApps/MahApps.Metro -->
+	<!-- https://livecharts.dev/docs/wpf/2.0.0-rc2/gallery -->
 
 	<Window.DataContext>
 		<viewModels:MainViewModel />
@@ -56,7 +57,7 @@
 			</StackPanel.Resources>
 		</StackPanel>
 
-		<ContentControl Margin="65, 20, 20, 20" Content="{Binding CurrentView}" />
+		<ContentControl Margin="55, 10, 10, 10" Content="{Binding CurrentView}" />
 	</Grid>
 
 </mah:MetroWindow>

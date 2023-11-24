@@ -7,23 +7,23 @@ public class HardwareBarWidget : Control
 {
 	public static readonly DependencyProperty TempProperty =
 		DependencyProperty.RegisterAttached("Temp", typeof(float), typeof(HardwareBarWidget),
-			new FrameworkPropertyMetadata((float) 0.0));
+			new FrameworkPropertyMetadata(default(float)));
 
 	public static readonly DependencyProperty ClockProperty =
 		DependencyProperty.RegisterAttached("Clock", typeof(float), typeof(HardwareBarWidget),
-			new FrameworkPropertyMetadata((float) 0.0));
+			new FrameworkPropertyMetadata(default(float)));
 
 	public static readonly DependencyProperty PowerProperty =
 		DependencyProperty.RegisterAttached("Power", typeof(float), typeof(HardwareBarWidget),
-			new FrameworkPropertyMetadata((float) 0.0));
+			new FrameworkPropertyMetadata(default(float)));
 
 	public static readonly DependencyProperty LoadProperty =
 		DependencyProperty.RegisterAttached("Load", typeof(float), typeof(HardwareBarWidget),
-			new FrameworkPropertyMetadata((float) 0.0));
+			new FrameworkPropertyMetadata(default(float)));
 
 	public static readonly DependencyProperty TitleProperty =
 		DependencyProperty.RegisterAttached("Title", typeof(string), typeof(HardwareBarWidget),
-			new FrameworkPropertyMetadata(""));
+			new FrameworkPropertyMetadata(default(string)));
 
 	static HardwareBarWidget()
 	{

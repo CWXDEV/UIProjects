@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using System.Windows;
@@ -9,6 +10,12 @@ using LibreHardware_Helper;
 using LibreHardware_Helper.Model.HardwareData.CPU;
 using LibreHardware_Helper.Model.HardwareData.GPU;
 using LibreHardware_Helper.Model.HardwareData.Memory;
+using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.Measure;
+using LiveChartsCore.SkiaSharpView.Extensions;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 using wpfAppMetro.Helpers;
 using wpfAppMetro.Models.Enum;
 
@@ -16,6 +23,8 @@ namespace wpfAppMetro.ViewModels;
 
 public partial class HardwareMonitorViewModel : ObservableObject
 {
+	private LibreHardwareHelper _helper = new ();
+
 	[ObservableProperty]
 	private CpuData? _cpuData;
 
@@ -25,60 +34,19 @@ public partial class HardwareMonitorViewModel : ObservableObject
 	[ObservableProperty]
 	private MemoryData? _ramData;
 
-	public PathGeometry PhysicalMemoryGeometry
-	{
-		get => CalculateArcGeometry(_ramData.PercentUsed);
-	}
+	[ObservableProperty]
+	private string _physicalMemoryUsage = "";
 
-	private PathGeometry CalculateArcGeometry(float percentUsed)
-	{
-		var min = 0; // Assuming minimum is 0
-		var max = 100; // Assuming maximum is 100
-		var range = max - min;
-		var normalizedValue = (percentUsed - min) / range;
-		var angle = normalizedValue * 360;
+	[ObservableProperty]
+	private string _virtualMemoryUsage = "";
 
-		// Convert degrees to radians
-		var radians = angle * Math.PI / 180;
+	public ObservableValue PhysicalCurrentValue { get; set; } = new ();
 
-		// Assuming the radial control has a fixed size, e.g., 100x100
-		var radius = 50; // Radius of the circle
-		var startPoint = new Point(radius, 0); // Start point at the top center
+	public ObservableValue VirtualCurrentValue { get; set; } = new ();
 
-		// Calculate the end point
-		var endPointX = radius + radius * Math.Sin(radians);
-		var endPointY = radius - radius * Math.Cos(radians);
-		var endPoint = new Point(endPointX, endPointY);
+	public IEnumerable<ISeries> PhysicalSeries { get; set; }
 
-		// Determine if it's a large arc
-		var isLargeArc = angle > 180.0;
-
-		// Create the arc segment
-		var arcSegment = new ArcSegment
-		{
-			Point = endPoint,
-			Size = new Size(radius, radius),
-			IsLargeArc = isLargeArc,
-			SweepDirection = SweepDirection.Clockwise
-		};
-
-		// Create the path figure
-		var pathFigure = new PathFigure
-		{
-			StartPoint = startPoint,
-			IsClosed = false
-		};
-		pathFigure.Segments.Add(arcSegment);
-
-		// Create the path geometry
-		var pathGeometry = new PathGeometry();
-		pathGeometry.Figures.Add(pathFigure);
-
-		return pathGeometry;
-	}
-
-
-	private LibreHardwareHelper _helper = new();
+	public IEnumerable<ISeries> VirtualSeries { get; set; }
 
 	public HardwareMonitorViewModel()
 	{
@@ -93,7 +61,7 @@ public partial class HardwareMonitorViewModel : ObservableObject
 		CpuData?.Update();
 		GpuData?.Update();
 		RamData?.Update();
-		OnPropertyChanged(nameof(PhysicalMemoryGeometry));
+		UpdateMemoryUsage();
 	}
 
 	private void InitData()
@@ -102,5 +70,41 @@ public partial class HardwareMonitorViewModel : ObservableObject
 		GpuData = _helper.GetGpuData();
 		RamData = _helper.GetMemoryData();
 
+		PhysicalSeries = GaugeGenerator.BuildSolidGauge(new GaugeItem(PhysicalCurrentValue, series =>
+		{
+			series.Fill = new SolidColorPaint(SKColors.YellowGreen);
+			series.DataLabelsSize = 25;
+			series.DataLabelsPaint = new SolidColorPaint(SKColors.White);
+			series.DataLabelsPosition = PolarLabelsPosition.ChartCenter;
+			series.InnerRadius = 50;
+			series.DataLabelsFormatter = value => value.PrimaryValue.ToString("N0") + "%";
+		}), new GaugeItem(GaugeItem.Background, series =>
+		{
+			series.InnerRadius = 50;
+			series.Fill = new SolidColorPaint(new SKColor(100, 181, 246, 90));
+		}));
+
+		VirtualSeries = GaugeGenerator.BuildSolidGauge(new GaugeItem(VirtualCurrentValue, series =>
+		{
+			series.Fill = new SolidColorPaint(SKColors.YellowGreen);
+			series.DataLabelsSize = 25;
+			series.DataLabelsPaint = new SolidColorPaint(SKColors.White);
+			series.DataLabelsPosition = PolarLabelsPosition.ChartCenter;
+			series.InnerRadius = 50;
+			series.DataLabelsFormatter = value => value.PrimaryValue.ToString("N0") + "%";
+		}), new GaugeItem(GaugeItem.Background, series =>
+		{
+			series.InnerRadius = 50;
+			series.Fill = new SolidColorPaint(new SKColor(100, 181, 246, 90));
+		}));
+	}
+
+	private void UpdateMemoryUsage()
+	{
+		PhysicalMemoryUsage = $"{RamData?.AmountUsed:N2} / {RamData?.Total:N2} GB";
+		VirtualMemoryUsage = $"{RamData?.VirtualAmountUsed:N2} / {RamData?.VirtualTotal:N2} GB";
+
+		PhysicalCurrentValue.Value = (int) RamData?.PercentUsed;
+		VirtualCurrentValue.Value = (int) RamData?.VirtualPercentUsed;
 	}
 }
