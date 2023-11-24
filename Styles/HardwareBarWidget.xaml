@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:wpfAppMetro.Models"
-                    xmlns:converters="clr-namespace:wpfAppMetro.Models.Converters">
+                    xmlns:local="clr-namespace:AIO.Models"
+                    xmlns:converters="clr-namespace:AIO.Models.Converters">
 
 	<converters:FloatToStringTempConverter x:Key="FloatToStringTempConverter" />
 	<converters:FloatToStringHertzConverter x:Key="FloatToStringHertzConverter" />

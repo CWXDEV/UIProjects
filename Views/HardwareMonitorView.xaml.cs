@@ -1,7 +1,6 @@
 ﻿using System.Windows.Controls;
-using wpfAppMetro.ViewModels;
 
-namespace wpfAppMetro.Views;
+namespace AIO.Views;
 
 public partial class HardwareMonitorView : UserControl
 {

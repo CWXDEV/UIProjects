@@ -2,10 +2,10 @@
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
-using wpfAppMetro.Helpers;
-using wpfAppMetro.Models.SaveState;
+using AIO.Helpers;
+using AIO.Models.SaveState;
 
-namespace wpfAppMetro.Views;
+namespace AIO.Views;
 
 public partial class SettingsView : UserControl
 {

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace wpfAppMetro.Models;
+namespace AIO.Models;
 
 public class HardwareBarWidget : Control
 {

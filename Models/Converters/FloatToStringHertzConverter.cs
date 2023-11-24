@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace wpfAppMetro.Models.Converters;
+namespace AIO.Models.Converters;
 
 public class FloatToStringHertzConverter : IValueConverter
 {

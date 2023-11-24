@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using LiveChartsCore;
-using LiveChartsCore.Measure;
 
-namespace wpfAppMetro.Models;
+namespace AIO.Models;
 
 public class HardwareRadialWidget : Control
 {

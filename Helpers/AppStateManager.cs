@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Timers;
-using wpfAppMetro.Models.Enum;
+using AIO.Models.Enum;
 
-namespace wpfAppMetro.Helpers;
+namespace AIO.Helpers;
 
 public class AppStateManager
 {

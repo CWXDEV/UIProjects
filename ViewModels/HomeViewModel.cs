@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace wpfAppMetro.ViewModels;
+namespace AIO.ViewModels;
 
 public class HomeViewModel : ObservableObject
 {

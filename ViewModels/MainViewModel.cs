@@ -1,9 +1,9 @@
 ﻿using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using wpfAppMetro.Views;
+using AIO.Views;
 
-namespace wpfAppMetro.ViewModels;
+namespace AIO.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {

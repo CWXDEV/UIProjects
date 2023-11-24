@@ -1,4 +1,4 @@
-﻿namespace wpfAppMetro.Models.SaveState;
+﻿namespace AIO.Models.SaveState;
 
 public class HardwareMonitorModel
 {

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace wpfAppMetro;
+namespace AIO;
 
 /// <summary>
 ///     Interaction logic for App.xaml

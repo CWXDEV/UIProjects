@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
-using wpfAppMetro.Models.SaveState;
+using AIO.Models.SaveState;
 
-namespace wpfAppMetro.Helpers;
+namespace AIO.Helpers;
 
 public class LocalStorageManager
 {

@@ -5,8 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
-namespace wpfAppMetro.Views;
+namespace AIO.Views;
 
 public partial class SptLauncherView : UserControl
 {

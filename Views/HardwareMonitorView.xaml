@@ -1,18 +1,17 @@
-﻿<UserControl x:Class="wpfAppMetro.Views.HardwareMonitorView"
+﻿<UserControl x:Class="AIO.Views.HardwareMonitorView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
-             xmlns:viewModels="clr-namespace:wpfAppMetro.ViewModels"
-             xmlns:models="clr-namespace:wpfAppMetro.Models"
+             xmlns:models="clr-namespace:AIO.Models"
+             xmlns:viewModels1="clr-namespace:AIO.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="1000"
              d:DesignWidth="1000"
              Background="Transparent">
 
 	<UserControl.DataContext>
-		<viewModels:HardwareMonitorViewModel />
+		<viewModels1:HardwareMonitorViewModel />
 	</UserControl.DataContext>
 
 	<StackPanel>

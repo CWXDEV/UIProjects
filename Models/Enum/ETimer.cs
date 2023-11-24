@@ -1,4 +1,4 @@
-﻿namespace wpfAppMetro.Models.Enum;
+﻿namespace AIO.Models.Enum;
 
 public enum ETimer
 {

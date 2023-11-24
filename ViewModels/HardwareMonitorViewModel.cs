@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Shapes;
+using AIO.Helpers;
+using AIO.Models.Enum;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LibreHardware_Helper;
 using LibreHardware_Helper.Model.HardwareData.CPU;
@@ -16,10 +14,8 @@ using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
-using wpfAppMetro.Helpers;
-using wpfAppMetro.Models.Enum;
 
-namespace wpfAppMetro.ViewModels;
+namespace AIO.ViewModels;
 
 public partial class HardwareMonitorViewModel : ObservableObject
 {
@@ -44,9 +40,9 @@ public partial class HardwareMonitorViewModel : ObservableObject
 
 	public ObservableValue VirtualCurrentValue { get; set; } = new ();
 
-	public IEnumerable<ISeries> PhysicalSeries { get; set; }
+	public IEnumerable<ISeries>? PhysicalSeries { get; set; }
 
-	public IEnumerable<ISeries> VirtualSeries { get; set; }
+	public IEnumerable<ISeries>? VirtualSeries { get; set; }
 
 	public HardwareMonitorViewModel()
 	{

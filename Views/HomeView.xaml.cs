@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace wpfAppMetro.Views;
+namespace AIO.Views;
 
 public partial class HomeView : UserControl
 {

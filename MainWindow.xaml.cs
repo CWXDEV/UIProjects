@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using MahApps.Metro.Controls;
 
-namespace wpfAppMetro;
+namespace AIO;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
@@ -20,7 +20,7 @@ public partial class MainWindow : MetroWindow
 	{
 		Process.Start(new ProcessStartInfo
 		{
-			FileName = "https://github.com/CWXDEV/UIProjects/tree/main/WPFApp",
+			FileName = "https://github.com/CWXDEV/UIProjects/tree/main",
 			UseShellExecute = true
 		});
 	}

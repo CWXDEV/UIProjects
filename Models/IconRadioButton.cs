@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using MahApps.Metro.IconPacks;
 
-namespace wpfAppMetro.Models;
+namespace AIO.Models;
 
 public class IconRadioButton : RadioButton
 {
